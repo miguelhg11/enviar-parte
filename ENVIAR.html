@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Enviar Parte Policial</title>
+</head>
+<body style="font-family: Arial, sans-serif; text-align: center; margin-top: 50px;">
+    <h2>Enviar Parte Policial – Intervención</h2>
+    <button onclick="enviarParte()" style="padding: 15px 30px; font-size: 16px; cursor: pointer;">📤 Enviar Intervención</button>
+    <p id="estado" style="margin-top: 20px; font-weight: bold;"></p>
+
+    <script>
+        function enviarParte() {
+            const estado = document.getElementById("estado");
+            estado.innerText = "Enviando...";
+            fetch("https://hooks.zapier.com/hooks/catch/23916238/uudh1jr/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    "Fecha": "23/07/2025",
+                    "Hora": "15:53",
+                    "Tipo de parte": "Intervención",
+                    "Texto": "Se interviene en zona verde próxima a la calle Las Viñas tras llamada vecinal por presencia de menores consumiendo alcohol. A la llegada, se identifican a dos menores con bebidas alcohólicas. Se decomisan las bebidas y se informa telefónicamente a sus progenitores.",
+                    "Enviado por": "MIGUEL",
+                    "Destinatarios": "pl17225@ayto-villalbilla.org"
+                })
+            }).then(response => {
+                if (response.ok) {
+                    estado.innerText = "✅ Parte enviado correctamente.";
+                } else {
+                    estado.innerText = "❌ Error al enviar el parte.";
+                }
+            }).catch(error => {
+                estado.innerText = "❌ Error de red al enviar el parte.";
+            });
+        }
+    </script>
+</body>
+</html>
