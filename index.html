@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Generar Parte Policial – Intervención</title>
+  <title>Generar Comando Parte Policial</title>
   <style>
     body {
       font-family: sans-serif;
@@ -39,10 +39,10 @@
   </style>
 </head>
 <body>
-  <h1>Generar Parte Policial – Intervención</h1>
-  <button onclick="generarParte()">Generar Comando</button>
+  <h1>Generar Parte Policial</h1>
+  <button onclick="generarParte()">📋 Generar Comando</button>
   <div id="output" style="display:none;"></div>
-  <button id="copiar" style="display:none;" onclick="copiar()">📋 Copiar comando</button>
+  <button id="copiar" style="display:none;" onclick="copiar()">✅ Copiar comando</button>
 
   <script>
     function generarParte() {
@@ -55,7 +55,7 @@
         "Destinatarios": "pl17225@ayto-villalbilla.org"
       };
 
-      const jsonData = JSON.stringify(datos);
+      const jsonData = JSON.stringify(datos, null, 2);
       const comando = `curl -X POST https://hooks.zapier.com/hooks/catch/23916238/uudh1jr/ \\
   -H "Content-Type: application/json" \\
   -d '${jsonData}'`;
